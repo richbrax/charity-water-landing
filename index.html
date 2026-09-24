@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>charity: water | Proof, not promises.</title>
+<meta name="description" content="100% of what you give funds clean water. We send you the photos and GPS coordinates of the well you helped build.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --yellow:#FFC700;
+    --teal:#00A19D;
+    --ink:#111111;
+    --body:#3A3A3A;
+    --placeholder:#DCDCDC;
+    --maxw:1240px;
+    --gutter:48px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Archivo",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+    color:var(--ink);
+    background:#FFFFFF;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{display:block;width:100%;height:100%;object-fit:cover}
+  a{color:inherit}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter)}
+
+  /* a neutral block shows here if the photo file is missing */
+  .photo{background:var(--placeholder);position:relative;overflow:hidden}
+
+  .btn{
+    display:inline-block;background:var(--yellow);color:var(--ink);
+    font-weight:700;font-size:15px;text-decoration:none;
+    padding:14px 22px;border:none;cursor:pointer;line-height:1;
+    transition:background .15s ease;
+  }
+  .btn:hover,.btn:focus-visible{background:#E6B400}
+
+  .eyebrow{
+    color:var(--teal);font-size:12px;font-weight:700;
+    letter-spacing:.18em;text-transform:uppercase;margin-bottom:14px;
+  }
+
+  /* ---------- header ---------- */
+  header{padding:22px 0}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px}
+  .mark{font-size:19px;font-weight:700;letter-spacing:-.01em;white-space:nowrap}
+  .mark b{font-weight:800}
+  .mark i{
+    display:inline-block;width:9px;height:9px;background:var(--yellow);
+    margin-left:6px;vertical-align:2px;font-style:normal;
+  }
+
+  /* ---------- hero ---------- */
+  .hero{display:grid;grid-template-columns:1fr 1fr;align-items:stretch;min-height:560px}
+  .hero-copy{display:flex;flex-direction:column;justify-content:center;padding:56px var(--gutter) 56px 0}
+  .hero-inner{max-width:520px;margin-left:auto;width:100%}
+  .hero h1{
+    font-size:clamp(46px,5.6vw,78px);font-weight:800;
+    line-height:1.02;letter-spacing:-.035em;margin-bottom:26px;
+  }
+  .hero p{font-size:17px;line-height:1.6;color:var(--body);max-width:430px;margin-bottom:30px}
+  .hero-photo{min-height:420px}
+
+  /* ---------- stat band ---------- */
+  .band{background:var(--yellow);text-align:center;padding:54px 0}
+  .band .num{font-size:clamp(58px,7vw,92px);font-weight:800;line-height:1;letter-spacing:-.03em}
+  .band .cap{font-size:14px;font-weight:700;margin-top:12px}
+
+  /* ---------- how giving works ---------- */
+  .how{padding:84px 0 88px}
+  .how h2{
+    font-size:clamp(36px,4.4vw,58px);font-weight:800;
+    line-height:1.05;letter-spacing:-.03em;margin-bottom:52px;
+  }
+  .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:46px}
+  .col svg{width:26px;height:26px;margin-bottom:18px}
+  .col h3{font-size:17px;font-weight:700;margin-bottom:10px}
+  .col p{font-size:14.5px;line-height:1.65;color:var(--body)}
+
+  /* ---------- impact ---------- */
+  .impact{display:grid;grid-template-columns:1fr 1fr;align-items:stretch;min-height:520px}
+  .impact-photo{min-height:420px}
+  .impact-copy{display:flex;flex-direction:column;justify-content:center;padding:56px 0 56px var(--gutter)}
+  .impact-inner{max-width:520px}
+  .impact h2{
+    font-size:clamp(36px,4.4vw,58px);font-weight:800;
+    line-height:1.06;letter-spacing:-.03em;margin-bottom:22px;
+  }
+  .impact p{font-size:16px;line-height:1.65;color:var(--body);max-width:470px}
+
+  /* ---------- closing ---------- */
+  .close{background:var(--ink);color:#fff;text-align:center;padding:84px 0}
+  .close h2{
+    font-size:clamp(36px,4.8vw,62px);font-weight:800;
+    line-height:1.08;letter-spacing:-.03em;margin-bottom:34px;
+  }
+
+  /* ---------- footer ---------- */
+  footer{background:var(--ink);color:#fff;padding:0 0 34px}
+  footer .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+  .links{display:flex;gap:30px;font-size:13px}
+  .links a{text-decoration:none;opacity:.8}
+  .links a:hover,.links a:focus-visible{opacity:1;text-decoration:underline}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:880px){
+    :root{--gutter:22px}
+    .hero,.impact{grid-template-columns:1fr}
+    .hero{min-height:0}
+    .hero-copy{order:2;padding:38px var(--gutter) 46px}
+    .hero-inner{margin-left:0;max-width:none}
+    .hero-photo{order:1;min-height:320px}
+    .impact-photo{min-height:320px}
+    .impact-copy{padding:38px var(--gutter) 46px}
+    .cols{grid-template-columns:1fr;gap:34px}
+    .how{padding:58px 0 62px}
+    .close{padding:62px 0}
+    .hero p{max-width:none}
+  }
+  /* the hero and impact photos are full-bleed on desktop, so pad their text side only */
+  @media (min-width:881px){
+    .hero-copy{padding-left:max(var(--gutter),calc((100vw - var(--maxw))/2 + var(--gutter)))}
+    .impact-copy{padding-right:max(var(--gutter),calc((100vw - var(--maxw))/2 + var(--gutter)))}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="mark"><b>charity</b>: water<i></i></div>
+    <a class="btn" href="#donate">Donate Your Coffee Money</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-copy">
+    <div class="hero-inner">
+      <h1>Proof, not promises.</h1>
+      <p>100% of what you give funds clean water. We send you the photos and GPS coordinates of the well you helped build.</p>
+      <a class="btn" href="#donate">Donate Your Coffee Money</a>
+    </div>
+  </div>
+  <div class="hero-photo photo">
+    <!-- Replace with a photo from the charity: water visuals folder -->
+    <img src="images/hero.avif" alt="A child drinking from a clean water tap." onerror="this.style.display='none'">
+  </div>
+</section>
+
+<!-- STAT BAND -->
+<section class="band">
+  <div class="wrap">
+    <div class="num">100%</div>
+    <div class="cap">of your donation funds clean water</div>
+  </div>
+</section>
+
+<!-- HOW GIVING WORKS -->
+<section class="how">
+  <div class="wrap">
+    <p class="eyebrow">How giving works</p>
+    <h2>Where your money goes</h2>
+    <div class="cols">
+
+      <div class="col">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M7 17 17 7"/><path d="M8 7h9v9"/>
+        </svg>
+        <h3>100% to the field</h3>
+        <p>Your giving funds clean water projects. The work stays focused on the field.</p>
+      </div>
+
+      <div class="col">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/>
+        </svg>
+        <h3>Photos and GPS coordinates</h3>
+        <p>See the well you helped build. Follow its progress through photos and location details.</p>
+      </div>
+
+      <div class="col">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/>
+        </svg>
+        <h3>Every project, public</h3>
+        <p>Project information is made public. You can see where your giving goes.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EVERYDAY IMPACT -->
+<section class="impact">
+  <div class="impact-photo photo">
+    <!-- Replace with a photo from the charity: water visuals folder -->
+    <img src="images/impact.avif" alt="A young girl collecting water from a tap." onerror="this.style.display='none'">
+  </div>
+  <div class="impact-copy">
+    <div class="impact-inner">
+      <p class="eyebrow">The everyday impact</p>
+      <h2>Clean water changes the everyday.</h2>
+      <p>Reliable clean water supports the ordinary moments that shape a day: drinking, cooking, washing, learning, and spending more time with family and community.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section class="close" id="donate">
+  <div class="wrap">
+    <h2>Give clean water. Get proof.</h2>
+    <a class="btn" href="https://www.charitywater.org/donate" target="_blank" rel="noopener">Donate Your Coffee Money</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <nav class="links" aria-label="Footer">
+      <a href="#">About</a>
+      <a href="#">How it works</a>
+      <a href="#">Projects</a>
+      <a href="#">Contact</a>
+    </nav>
+    <div class="mark"><b>charity</b>: water<i></i></div>
+  </div>
+</footer>
+
+</body>
+</html>
